@@ -1,0 +1,159 @@
+SiteCode,SiteName,SiteType,easting,northing
+BG1,Barking & Dagenham 1 - Rush Green,Suburban,551055,187233
+BG2,Barking & Dagenham 2 - Scrattons Farm,Suburban,548046,183320
+BG3,Barking and Dagenham - North Street,Kerbside,543957,184433
+BL0,Bloomsbury - AURN,Urban background,530122,182039
+BN1,Barnet 1 - Tally Ho Corner,Kerbside,526344,192224
+BN2,Barnet 2 - Finchley,Urban background,524372,189641
+BT1,Brent 1 - Kingsbury AURN,Suburban,519562,189271
+BT4,Brent 4 -  Ikea,Roadside,520868,185170
+BT5,Brent 5 - Neasden Lane,Industrial,521513,185205
+BT6,Brent - John Keble Primary School,Roadside,521621,183554
+BT7,Brent - St Marys Primary School,Urban background,525175,183298
+BX1,Bexley 1 - Slade Green AURN,Suburban,551862,176377
+BX2,Bexley 2 - Belvedere,Suburban,549978,179065
+BX4,Bexley 4 - Erith,Industrial,552236,177690
+BX7,Bexley 7 - Thames Rd North,Roadside,552617,175416
+BX8,Bexley 8 - Thames Rd South,Roadside,552568,175385
+BY7,Bromley 7 - Central,Roadside,540520,169324
+CD1,Camden 1 - Swiss Cottage,Kerbside,526631,184391
+CD3,Camden 3 - Shaftesbury Avenue,Roadside,530059,181286
+CD4,Camden - St Martins College (NOX 1),Urban background,530514,181666
+CD5,Camden - St Martins College (NOX 2),Urban background,530514,181666
+CR2,Croydon 2 - Purley Way,Roadside,531126,164300
+CR3,Croydon - Thornton Heath,Suburban,532339,168935
+CR4,Croydon 4 - George Street,Roadside,532585,165636
+CR5,Croydon 5 - Norbury,Kerbside,530628,169707
+CR6,Croydon 6 - Euston Road,Suburban,531364,166097
+CT1,City of London 1 - Senator House,Urban background,532237,180892
+CT3,City of London - Sir John Cass School,Urban background,533482,181187
+CT6,City of London - Walbrook Wharf,Roadside,532530,180790
+CY1,Crystal Palace 1 - C Palace Parade,Roadside,533903,171290
+EA1,Ealing 1 - Ealing Town Hall,Urban background,517543,180738
+EA2,Ealing 2 - Acton Town Hall,Roadside,520306,180055
+EA6,Ealing - Hanger Lane Gyratory,Roadside,518539,182708
+EA7,Ealing 7 - Southall,Urban background,511679,180072
+EL1,Elmbridge - Bell Farm Hersham,Urban background,511403,164912
+EL2,Elmbridge - Esher High Street,Roadside,514024,164789
+EN1,Enfield 1 - Bushhill Park,Suburban,533870,195839
+EN3,Enfield - Salisbury School,Urban background,535440,194997
+EN4,Enfield 4 - Derby Road Upper Edmonton,Roadside,535028,192450
+EN5,Enfield - Bowes Primary School,Roadside,529896,192224
+GB6,Greenwich Bexley 6 - A2 Falconwood,Roadside,545000,175098
+GN0,Greenwich - A206 Burrage Grove,Roadside,544086,178882
+GN2,Greenwich 12 - Millennium Village,Urban background,540171,178999
+GN3,Greenwich 13 - Plumstead High Street,Roadside,545563,178526
+GR4,Greenwich 4 - Eltham,Suburban,543981,174655
+GR5,Greenwich 5 - Trafalgar Road,Roadside,538962,177954
+GR7,Greenwich 7 - Blackheath,Roadside,538144,176711
+GR8,Greenwich 8 - Woolwich,Roadside,540202,178367
+GR9,Greenwich 9 - Westhorne Ave,Roadside,541882,175017
+HF1,H and F 1 - Hammersmith Broadway,Roadside,523390,178614
+HF2,H'smith and Fulham 2 - Brook Green,Urban background,523630,179018
+HG1,Haringey 1 - Town Hall,Roadside,533894,190707
+HG2,Haringey 2 - Priory Park,Suburban,529896,189126
+HI0,Hillingdon - AURN,Suburban,506943,178607
+HI1,Hillingdon 1 - South Ruislip,Roadside,510837,184917
+HI2,Hillingdon 2 - Hillingdon Hospital,Roadside,506992,181925
+HI3,Hillingdon 3 - Oxford Avenue,Roadside,509553,176975
+HK4,Hackney 4 - Clapton,Urban background,534832,186234
+HK6,Hackney 6 - Old Street,Roadside,532950,182576
+HM4,Hertsmere Borehamwood 2,Urban background,520250,197247
+HR1,Harrow 1 - Stanmore,Urban background,517879,192315
+HR2,Harrow 2 - North Harrow,Roadside,513506,188999
+HS2,Hounslow 2 - Cranford,Suburban,510372,177199
+HS4,Hounslow 4 - Chiswick High Rd,Roadside,521085,178502
+HS5,Hounslow 5 - Brentford,Roadside,517425,178070
+HS6,Hounslow - Heston Road,Roadside,513655,176842
+HS7,Hounslow - Hatton Cross,Urban background,509334,174998
+HS9,Hounslow - Feltham,Roadside,510678,173245
+HV1,Havering 1 - Rainham,Roadside,553113,182517
+HV3,Havering - Romford,Roadside,551107,188262
+IS2,Islington 2 - Holloway Road,Roadside,530700,185736
+IS6,Islington - Arsenal,Urban background,531328,186032
+KC1,Kens and Chelsea 1 - North Kensington,Urban background,524048,181751
+KC2,Kens and Chelsea 2 - Cromwell Rd,Roadside,526521,178967
+KC3,Kens and Chelsea 3 - Knightsbridge,Roadside,527516,179397
+KC4,Kens and Chelsea 4 - Kings Rd,Roadside,527266,178089
+KC5,Kensington and Chelsea - Earls Court Rd,Kerbside,525700,178357
+LB1,Lambeth 1 - Christchurch Road,Roadside,530630,173368
+LB3,Lambeth 3 - Loughborough Junct,Urban background,532139,175701
+LB4,Lambeth 4 - Brixton Road,Kerbside,531072,175594
+LB5,Lambeth - Bondway Interchange,Roadside,530319,177953
+LH0,Harlington - AURN,Urban background,508293,177798
+LH2,Heathrow Airport,Urban background,508395,176742
+LW1,Lewisham 1 - Catford,Urban background,537677,173690
+LW2,Lewisham 2 - New Cross,Roadside,536243,176932
+ME1,Merton - Morden Civic Centre,Roadside,525591,168437
+MY1,Marylebone Rd - Baker St,Kerbside,528127,182017
+NM2,Newham - Cam Road,Roadside,538657,183969
+NM3,Newham - Wren Close,Urban background,539885,181457
+RB1,Redbridge 1 - Perth Terrace,Urban background,544380,187648
+RB3,Redbridge 3 - Fullwell Cross localstd,Kerbside,544557,190403
+RB4,Redbridge 4 - Gardner Close localstd,Roadside,540825,188370
+RB5,Redbridge 5 - A406 Southend Rd,Roadside,540020,190489
+RI1,Richmond 1 - Castlenau,Roadside,522500,177165
+RI2,Richmond 2 -Barnes Wetlands,Suburban,522991,176730
+SK1,Southwark 1 - Elephant and Castle,Urban background,532242,178562
+ST3,Sutton 3 - Carshalton,Suburban,527778,164513
+ST4,Sutton 4 - Wallington,Kerbside,528927,163804
+ST5,Sutton 5 - Beddington Lane,Industrial,529402,167224
+ST6,Sutton - Worcester Park,Kerbside,522560,165788
+TD0,Teddington - AURN,Suburban,515545,170416
+TH1,Tower Hamlets 1,Urban background,537511,180868
+TH2,Tower Hamlets 2 - Mile End Rd,Roadside,535930,182222
+TH3,Tower Hamlets - Bethnal Green,Urban background,535102,182664
+TH4,Tower Hamlets - Blackwall,Roadside,538292,181453
+TK2,Thurrock - Purfleet,Roadside,556738,177925
+TK8,Thurrock - London Road (Purfleet),Roadside,556700,177938
+TR1,Three Rivers Rickmansworth,Urban background,505487,194483
+WA2,Wandsworth 2 - Town Hall,Urban background,525776,174661
+WA6,Wandsworth - Tooting,Roadside,527714,171184
+WA7,Wandsworth - Putney High Street,Kerbside,524036,175336
+WA8,Wandsworth - Putney High Street Façade,Roadside,524034,175373
+WF2,Watford - Watford Town Hall,Roadside,510570,196809
+WL1,Waltham Forest 1 - Dawlish Road,Urban background,538391,186724
+WL4,Waltham Forest - Crooked Billet,Kerbside,537468,191072
+WL5,Waltham Forest - Leyton,Urban background,537804,186022
+WM0,Westminster - AURN,Urban background,529778,178958
+WM4,Westminster - Charing Cross Library,Roadside,529995,180691
+CT8,City of London - Upper Thames Street,Roadside,532829,180691
+EI0,Ealing - Greenford,Urban background,514323,184067
+BX3,Bexley - Thamesmead,Suburban,547326,181231
+CD9,Camden - Euston Road,Roadside,529884,182639
+CR7,Croydon - Purley Way A23,Roadside,531151,164258
+EI2,Ealing - Southall Railway,Roadside,512514,179795
+EI7,Ealing - Southall FDMS,Urban Background,511677,180071
+EN7,Enfield - Prince of Wales School,Urban Background,536885,198507
+GN4,Greenwich - Fiveways Sidcup Rd A20,Roadside,543582,172653
+HF4,Hammersmith and Fulham - Shepherds Bush,Roadside,523314,179900
+HG4,Haringey  - Priory Park South,Urban Background,529977,188903
+HS8,Hounslow - Gunnersbury Avenue,Roadside,519180,179369
+LW4,Lewisham - Loampit Vale,Roadside,537911,175838
+RHA,Richmond Upon Thames - Lower Mortlake Rd,Roadside,518557,175460
+RHB,Richmond - Lower Mortlake Road,Roadside,518557,175460
+RHC,Richmond Upon Thames - Craneford Way,Industrial,515274,173535
+RHD,Richmond Upon Thames - Craneford Way,Industrial,515274,173535
+RHE,Richmond Upon Thames - Hanworth Road,Kerbside,512437,173217
+RHF,Richmond Upon Thames - Hampton Road,Kerbside,512437,173217
+TH5,Tower Hamlets - Victoria Park,Urban Background,536487,184238
+WA9,Wandsworth - Putney,Urban Background,524035,175519
+WAA,Wandsworth - Battersea,Roadside,529137,177249
+SK6,Southwark - Elephant and Castle,Urban Background,531893,178846
+T54,Heathrow - Oaks Road,Heathrow,505737,174481
+T55,Heathrow - Green Gates,Heathrow,505184,176921
+HIL1,Heathrow - Harmondsworth,Heathrow - Urban Background,505564,177654
+SIPS,Heathrow - Sipson,Heathrow - Urban Background,507328,177289
+HIL5,Heathrow - Hayes,Heathrow - Roadside,510305,178887
+SLH3,Heathrow - Colnbrook,Heathrow - Urban Background,503655,176767
+MAN1,Staines Reservoir,Manual,505288.93,173014.22
+MAN2,Heathrow -  Northern Runway,Manual,508619.33,176564.94
+MAN3,Heathrow -  Southern Runway,Manual,508649.5,175151.12
+MAN4,Heathrow - Terminals,Manual,507405.28,175863.75
+MAN5,M25 - Upwind background,Manual,503784.09,176312.17
+MAN6,M25 - Downwind,Manual,504101.54,176841.51
+MAN7,M25 - Sliproad,Manual,504703.96,178710.18
+MAN8,A406 - CTR,Manual,527270.11,191188.63
+MAN9,A406 - Background,Manual,527021.25,191133.96
+MAN10,A40 - Western Av CTR,Manual,509857.14,184462.29
+MAN11,A40 - Background,Manual,509530.1,184081.68
