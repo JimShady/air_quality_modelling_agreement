@@ -4,15 +4,14 @@ library(ggplot2)
 library(jsonlite)
 library(rgeos)
 library(rgdal)
-library(sf)
 
-source('../aq_api_key.R')
+source('/home/james/mounts/James/Mini Projects/aq_api_key.R')
 
 latlong = "+init=epsg:4326"
 ukgrid  = "+init=epsg:27700"
 google  = "+init=epsg:3857"
 
-locations               <- read.csv('site_locations.csv')
+locations               <- read.csv('/home/james/mounts/James/Mini Projects/air_quality_modelling_agreement/site_locations.csv')
 
 coordinates(locations)  <- ~easting + northing
 proj4string(locations)  <- CRS(ukgrid)
@@ -21,7 +20,7 @@ locations               <- data.frame(locations)
 names(locations)        <- c('sitecode', 'sitename', 'sitetype', 'longitude', 'latitude', 'optional')
 locations$optional      <- NULL
 
-base_url      <- 'https://api.breezometer.com/baqi/?'
+base_url      <- 'http://api.breezometer.com/baqi/?'
 
 for (i in 1:nrow(locations)) {
   
@@ -33,7 +32,8 @@ for (i in 1:nrow(locations)) {
   raw_result  <- fromJSON(url)
   
   result      <- data.frame(
-                    datetime = as.POSIXct(raw_result$`datetime`, format='%Y-%m-%dT%H:%M:%S'),
+                    actual_datetime = Sys.time(),
+					datetime = as.POSIXct(raw_result$`datetime`, format='%Y-%m-%dT%H:%M:%S'),
                     sitecode = as.character(locations[i,]$sitecode),
                     lat      = locations[i,]$latitude,
                     lon      = locations[i,]$longitude,
@@ -46,7 +46,9 @@ for (i in 1:nrow(locations)) {
                     stringsAsFactors = F
                           )
   
-  write.table(result, "result.csv", sep = ",", row.names = F, col.names = F, append = T)
+  write.table(result, "/home/james/mounts/James/Mini Projects/air_quality_modelling_agreement/result.csv", sep = ",", row.names = F, col.names = F, append = T)
   
   Sys.sleep(sample(1:2,1))
 }
+
+system("cp '/home/james/mounts/James/Mini Projects/air_quality_modelling_agreement/result.csv' '/home/james/mounts/botanix-botanixg/Projects/breezometer/'")

@@ -157,3 +157,13 @@ MAN8,A406 - CTR,Manual,527270.11,191188.63
 MAN9,A406 - Background,Manual,527021.25,191133.96
 MAN10,A40 - Western Av CTR,Manual,509857.14,184462.29
 MAN11,A40 - Background,Manual,509530.1,184081.68
+MAN10_1s,A40 profile_south,Manual,509857.14,184412.29
+MAN10_2s,A40 profile_south,Manual,509857.14,184362.29
+MAN10_3s,A40 profile_south,Manual,509857.14,184312.29
+MAN10_4s,A40 profile_south,Manual,509857.14,184162.29
+MAN10_5s,A40 profile_south,Manual,509857.14,183862.29
+MAN10_1n,A40 profile_north,Manual,509857.14,184512.29
+MAN10_2n,A40 profile_north,Manual,509857.14,184562.29
+MAN10_3n,A40 profile_north,Manual,509857.14,184612.29
+MAN10_4n,A40 profile_north,Manual,509857.14,184762.29
+MAN10_5n,A40 profile_north,Manual,509857.14,185062.29
