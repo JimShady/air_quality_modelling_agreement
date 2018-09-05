@@ -14,6 +14,16 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(devtools)
 library(openair)
+library(curl)
+library(raster)
+library(sp)
+library(sf)
+
+## Coordinate reference information
+latlong     = "+init=epsg:4326"
+ukgrid      = "+init=epsg:27700"
+google      = "+init=epsg:3857"
+
 ```
 
 ```{r get_monitoring_site_data, include=F}
@@ -71,4 +81,107 @@ timeVariation(merged_data, pollutant = c('pm10_monitor', 'pm10_model'))
 
 ```{r so2, echo=F, results='hide', message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
 timeVariation(merged_data, pollutant = c('so2_monitor', 'so2_model'))
+```
+
+# Road transect comparison
+
+```{r get_monitoring_site_data_again, include=F}
+# Get site locations that we scrape data for
+site_results          <- read_csv('result.csv')
+
+# Remove the manually added sitecode
+site_results          <- site_results[substring(site_results$sitecode,1,6) == 'MAN10_',]
+
+plot_order            <- c('MAN10_5s', 'MAN10_4s', 'MAN10_3s', 'MAN10_2s', 'MAN10_1s', 'MAN10_1n', 'MAN10_2n', 'MAN10_3n', 'MAN10_4n', 'MAN10_5n')
+
+site_results$sitecode <- factor(site_results$sitecode, levels = plot_order)
+
+site_results          <- st_as_sf(site_results, coords = c("lon", "lat"), crs = 4326) %>% st_transform(27700)
+```
+
+```{r get_laei_data, include=F}
+## Download the LAEI 2013 concentration files and unzip them we'll need
+#concentrations_url    <- 'https://files.datapress.com/london/dataset/london-atmospheric-emissions-inventory-2013/2017-01-26T18:50:00/4.1.%20Concentrations%20LAEI%202013%20Update.zip'
+#temp = tempfile()
+#download.file(concentrations_url, temp)
+#unzip(temp, exdir = ".")
+
+setwd('Z:/James/Mini Projects/air_quality_modelling_agreement')
+
+no2_2013                      <- raster('4.1. Concentrations LAEI 2013 Update/2013/ASCII/PostLAEI2013_2013_NO2.asc')
+proj4string(no2_2013)         <- CRS(ukgrid)
+site_results$kcl_no2          <- extract(no2_2013, site_results)
+rm(no2_2013)
+
+pm25_2013                     <- raster('4.1. Concentrations LAEI 2013 Update/2013/ASCII/PostLAEI2013_2013_PM25.asc')
+proj4string(pm25_2013)        <- CRS(ukgrid)
+site_results$kcl_pm25         <- extract(pm25_2013, site_results)
+rm(pm25_2013)
+
+pm10_2013                     <- raster('4.1. Concentrations LAEI 2013 Update/2013/ASCII/PostLAEI2013_2013_PM10.asc')
+proj4string(pm10_2013)        <- CRS(ukgrid)
+site_results$kcl_pm10         <- extract(pm10_2013, site_results)
+rm(pm10_2013)
+
+site_results          <- st_transform(site_results, 4326)
+```
+
+## PM25
+
+```{r pm25_road, echo=F, results='hide', message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
+
+ggplot(data=site_results, aes(st_coordinates(site_results)[,2], pm25)) + 
+    annotate("rect", xmin = 51.548263, xmax = 51.548522, ymin = 8, ymax = 16,
+        alpha = .6) +
+  geom_smooth(aes(colour='External model')) +
+  geom_smooth(data = site_results, aes(st_coordinates(site_results)[,2], kcl_pm25, colour='KCL Model')) +
+  theme_bw() +
+  theme(axis.ticks.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        legend.title = element_blank(),
+        axis.text.y = element_text(size=12),
+        axis.title.y = element_text(size=14),
+        legend.text = element_text(size=14))
+
+```
+
+## NO2
+
+```{r no2_road, echo=F, results='hide', message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
+
+ggplot(data=site_results, aes(st_coordinates(site_results)[,2], no2)) + 
+    annotate("rect", xmin = 51.548263, xmax = 51.548522, ymin = 15, ymax = 40,
+        alpha = .6) +
+  geom_smooth(aes(colour='External model')) +
+  geom_smooth(data = site_results, aes(st_coordinates(site_results)[,2], kcl_no2, colour='KCL Model')) +
+  theme_bw() +
+  theme(axis.ticks.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        legend.title = element_blank(),
+        axis.text.y = element_text(size=12),
+        axis.title.y = element_text(size=14),
+        legend.text = element_text(size=14))
+
+```
+
+## PM10
+
+```{r pm10_road, echo=F, results='hide', message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
+
+ggplot(data=site_results, aes(st_coordinates(site_results)[,2], pm10)) + 
+    annotate("rect", xmin = 51.548263, xmax = 51.548522, ymin = 15, ymax = 26,
+        alpha = .6) +
+  geom_smooth(aes(colour='External model')) +
+  geom_smooth(data = site_results, aes(st_coordinates(site_results)[,2], kcl_pm10, colour='KCL Model')) +
+  theme_bw() +
+  theme(axis.ticks.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        legend.title = element_blank(),
+        axis.text.y = element_text(size=12),
+        axis.title.y = element_text(size=14),
+        legend.text = element_text(size=14))
+
 ```
