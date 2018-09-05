@@ -1,0 +1,74 @@
+---
+title: "Results"
+author: "James Smith"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") }) 
+---
+
+```{r setup, include=F}
+rm(list = ls())
+
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(devtools)
+library(openair)
+```
+
+```{r get_monitoring_site_data, include=F}
+# Get site locations that we scrape data for
+site_results                <- read_csv('result.csv')
+
+# Remove the manually added sitecode
+site_results                <- site_results[substring(site_results$sitecode,1,2) != 'MA',]
+
+# Remove where we weren't recording the actual datetime we used
+site_results                <- site_results[!is.na(site_results$actual_datetime),]
+
+# Sites to import
+sites_to_import             <- unique(site_results$sitecode)
+
+# Get data from monitoring sites for the sites we sampled breezometer
+monitoring_sites            <- importKCL(site = sites_to_import[1:130], year = 2018, units = 'volume')
+monitoring_sites$site       <- NULL
+
+site_results$join_time      <- as.POSIXct(format(site_results$actual_datetime, format = '%Y-%m-%d %H:00:00'), format = '%Y-%m-%d %H:%M:%S')
+site_results$actual_datetime <- NULL
+site_results$datetime       <- NULL
+site_results                <- data.frame(site_results)
+
+merged_data                 <- merge(site_results, monitoring_sites, by.x = c('join_time', 'sitecode'), by.y = c('date', 'code'))
+
+names(merged_data)          <- gsub(pattern = '.x', replacement = '_monitor', names(merged_data))
+names(merged_data)          <- gsub(pattern = '.y', replacement = '_model', names(merged_data))
+names(merged_data)[1]       <- 'date'
+
+
+```
+
+# Comparisons at monitoring sites
+
+## NO2
+
+```{r no2, echo=F, message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
+timeVariation(merged_data, pollutant = c('no2_monitor', 'no2_model'))
+```
+
+## PM25
+
+```{r pm25, echo=F, results='hide', message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
+timeVariation(merged_data, pollutant = c('pm25_monitor', 'pm25_model'))
+```
+
+## PM10
+
+```{r pm10, echo=F, results='hide', message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
+timeVariation(merged_data, pollutant = c('pm10_monitor', 'pm10_model'))
+```
+
+## SO2
+
+```{r so2, echo=F, results='hide', message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
+timeVariation(merged_data, pollutant = c('so2_monitor', 'so2_model'))
+```
