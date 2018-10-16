@@ -62,6 +62,10 @@ merged_data                 <- merge(site_results, monitoring_sites, by.x = c('j
 
 names(merged_data)[1]       <- 'date'
 
+site_type                   <- openair::importMeta(source = 'kcl')
+site_type                   <- site_type[,c('code', 'site.type')]
+
+merged_data                 <- merge(merged_data, site_type, by.x = c('sitecode_model'), by.y = c('code'))
 ```
 
 # Comparisons at monitoring sites
@@ -71,38 +75,47 @@ names(merged_data)[1]       <- 'date'
 ```{r no2, echo=F, message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
 timeVariation(merged_data, pollutant = c('no2_monitor', 'no2_model'), name.pol = c('Monitored (ug/m3)','External Model (ug/m3)'))
 ```
+
+For NO2, we compare **`r length(unique(merged_data[!is.na(merged_data$no2_model) & !is.na(merged_data$no2_monitor),'sitecode_model']))`** sites hourly concentrations between `r min(merged_data[!is.na(merged_data$no2_model) & !is.na(merged_data$no2_monitor),'date'])` and `r max(merged_data[!is.na(merged_data$no2_model) & !is.na(merged_data$no2_monitor),'date'])`
+
 ```{r no2_stats, echo=F}
-kable(modStats(mydata = merged_data, mod = 'no2_model', obs = 'no2_monitor')) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+kable(modStats(mydata = merged_data, mod = 'no2_model', obs = 'no2_monitor', type = 'site.type')) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
 ## PM25
+
+For PM2.5, we compare **`r length(unique(merged_data[!is.na(merged_data$pm25_model) & !is.na(merged_data$pm25_monitor),'sitecode_model']))`** sites hourly concentrations between `r min(merged_data[!is.na(merged_data$pm25_model) & !is.na(merged_data$pm25_monitor),'date'])` and `r max(merged_data[!is.na(merged_data$pm25_model) & !is.na(merged_data$pm25_monitor),'date'])`
 
 ```{r pm25, echo=F, results='hide', message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
 timeVariation(merged_data, pollutant = c('pm25_monitor', 'pm25_model'), name.pol = c('Monitored (ug/m3)','External Model (ug/m3)'))
 ```
 
 ```{r pm25_stats, echo=F}
-kable(modStats(mydata = merged_data, mod = 'pm25_model', obs = 'pm25_monitor')) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+kable(modStats(mydata = merged_data, mod = 'pm25_model', obs = 'pm25_monitor', type = 'site.type')) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
 ## PM10
+
+For PM10, we compare **`r length(unique(merged_data[!is.na(merged_data$pm10_model) & !is.na(merged_data$pm10_monitor),'sitecode_model']))`** sites hourly concentrations between `r min(merged_data[!is.na(merged_data$pm10_model) & !is.na(merged_data$pm10_monitor),'date'])` and `r max(merged_data[!is.na(merged_data$pm10_model) & !is.na(merged_data$pm10_monitor),'date'])`
 
 ```{r pm10, echo=F, results='hide', message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
 timeVariation(merged_data, pollutant = c('pm10_monitor', 'pm10_model'), name.pol = c('Monitored (ug/m3)','External Model (ug/m3)'))
 ```
 
 ```{r pm10_stats, echo=F}
-kable(modStats(mydata = merged_data, mod = 'pm10_model', obs = 'pm10_monitor')) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+kable(modStats(mydata = merged_data, mod = 'pm10_model', obs = 'pm10_monitor', type = 'site.type')) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
 ## SO2
+
+For SO2, we compare **`r length(unique(merged_data[!is.na(merged_data$so2_model) & !is.na(merged_data$so2_monitor),'sitecode_model']))`** sites hourly concentrations between `r min(merged_data[!is.na(merged_data$so2_model) & !is.na(merged_data$so2_monitor),'date'])` and `r max(merged_data[!is.na(merged_data$so2_model) & !is.na(merged_data$so2_monitor),'date'])`
 
 ```{r so2, echo=F, results='hide', message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
 timeVariation(merged_data, pollutant = c('so2_monitor', 'so2_model'), name.pol = c('Monitored (ug/m3)','External Model (ug/m3)'))
 ```
 
 ```{r so2_stats, echo=F}
-kable(modStats(mydata = merged_data, mod = 'so2_model', obs = 'so2_monitor')) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+kable(modStats(mydata = merged_data, mod = 'so2_model', obs = 'so2_monitor', type = 'site.type')) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
 # Road transect comparison
