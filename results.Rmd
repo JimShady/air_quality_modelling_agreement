@@ -18,6 +18,9 @@ library(curl)
 library(raster)
 library(sp)
 library(sf)
+library(lubridate)
+library(kableExtra)
+library(rmarkdown)
 
 ## Coordinate reference information
 latlong     = "+init=epsg:4326"
@@ -36,6 +39,10 @@ site_results                <- site_results[substring(site_results$sitecode,1,2)
 # Remove where we weren't recording the actual datetime we used
 site_results                <- site_results[!is.na(site_results$actual_datetime),]
 
+# The scraped data is in BST so change to GMT
+site_results$actual_datetime <- site_results$actual_datetime-3600
+site_results$actual_datetime <- with_tz(site_results$actual_datetime, "GMT")
+
 # Sites to import
 sites_to_import             <- unique(site_results$sitecode)
 
@@ -48,12 +55,12 @@ site_results$actual_datetime <- NULL
 site_results$datetime       <- NULL
 site_results                <- data.frame(site_results)
 
-merged_data                 <- merge(site_results, monitoring_sites, by.x = c('join_time', 'sitecode'), by.y = c('date', 'code'))
+names(site_results)         <- paste0(names(site_results), '_model')
+names(monitoring_sites)     <- paste0(names(monitoring_sites), '_monitor')
 
-names(merged_data)          <- gsub(pattern = '.x', replacement = '_monitor', names(merged_data))
-names(merged_data)          <- gsub(pattern = '.y', replacement = '_model', names(merged_data))
+merged_data                 <- merge(site_results, monitoring_sites, by.x = c('join_time_model', 'sitecode_model'), by.y = c('date_monitor', 'code_monitor'))
+
 names(merged_data)[1]       <- 'date'
-
 
 ```
 
@@ -62,25 +69,40 @@ names(merged_data)[1]       <- 'date'
 ## NO2
 
 ```{r no2, echo=F, message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
-timeVariation(merged_data, pollutant = c('no2_monitor', 'no2_model'))
+timeVariation(merged_data, pollutant = c('no2_monitor', 'no2_model'), name.pol = c('Monitored (ug/m3)','External Model (ug/m3)'))
+```
+```{r no2_stats, echo=F}
+kable(modStats(mydata = merged_data, mod = 'no2_model', obs = 'no2_monitor')) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
 ## PM25
 
 ```{r pm25, echo=F, results='hide', message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
-timeVariation(merged_data, pollutant = c('pm25_monitor', 'pm25_model'))
+timeVariation(merged_data, pollutant = c('pm25_monitor', 'pm25_model'), name.pol = c('Monitored (ug/m3)','External Model (ug/m3)'))
+```
+
+```{r pm25_stats, echo=F}
+kable(modStats(mydata = merged_data, mod = 'pm25_model', obs = 'pm25_monitor')) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
 ## PM10
 
 ```{r pm10, echo=F, results='hide', message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
-timeVariation(merged_data, pollutant = c('pm10_monitor', 'pm10_model'))
+timeVariation(merged_data, pollutant = c('pm10_monitor', 'pm10_model'), name.pol = c('Monitored (ug/m3)','External Model (ug/m3)'))
+```
+
+```{r pm10_stats, echo=F}
+kable(modStats(mydata = merged_data, mod = 'pm10_model', obs = 'pm10_monitor')) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
 ## SO2
 
 ```{r so2, echo=F, results='hide', message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
-timeVariation(merged_data, pollutant = c('so2_monitor', 'so2_model'))
+timeVariation(merged_data, pollutant = c('so2_monitor', 'so2_model'), name.pol = c('Monitored (ug/m3)','External Model (ug/m3)'))
+```
+
+```{r so2_stats, echo=F}
+kable(modStats(mydata = merged_data, mod = 'so2_model', obs = 'so2_monitor')) %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
 # Road transect comparison
@@ -123,7 +145,7 @@ proj4string(pm10_2013)        <- CRS(ukgrid)
 site_results$kcl_pm10         <- extract(pm10_2013, site_results)
 rm(pm10_2013)
 
-site_results          <- st_transform(site_results, 4326)
+site_results                  <- st_transform(site_results, 4326)
 ```
 
 ## PM25
