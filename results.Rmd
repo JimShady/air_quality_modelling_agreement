@@ -145,7 +145,7 @@ site_results          <- st_as_sf(site_results, coords = c("lon", "lat"), crs = 
 #download.file(concentrations_url, temp)
 #unzip(temp, exdir = ".")
 
-setwd('Z:/James/Mini Projects/air_quality_modelling_agreement')
+setwd('B:/James/Mini Projects/air_quality_modelling_agreement')
 
 no2_2013                      <- raster('4.1. Concentrations LAEI 2013 Update/2013/ASCII/PostLAEI2013_2013_NO2.asc')
 proj4string(no2_2013)         <- CRS(ukgrid)
