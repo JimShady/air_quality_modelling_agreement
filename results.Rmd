@@ -44,10 +44,14 @@ site_results$actual_datetime <- site_results$actual_datetime-3600
 site_results$actual_datetime <- with_tz(site_results$actual_datetime, "GMT")
 
 # Sites to import
-sites_to_import             <- unique(site_results$sitecode)
+sites_to_import              <- data.frame(codes = unique(site_results$sitecode),
+                                           stringsAsFactors = F)
+
+# Remove codes that OpenAir KCL doesn't have
+sites_to_import             <- sites_to_import[sites_to_import$codes %in% importMeta(source='kcl')$code,]
 
 # Get data from monitoring sites for the sites we sampled breezometer
-monitoring_sites            <- importKCL(site = sites_to_import[1:130], year = 2018, units = 'volume')
+monitoring_sites            <- importKCL(site = sites_to_import, year = 2018, units = 'volume')
 monitoring_sites$site       <- NULL
 
 site_results$join_time      <- as.POSIXct(format(site_results$actual_datetime, format = '%Y-%m-%d %H:00:00'), format = '%Y-%m-%d %H:%M:%S')
